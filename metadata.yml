@@ -1,0 +1,7 @@
+dataset:
+    injuries:
+        path: data/injuries.csv
+        separator: ","
+        columns:
+            health_id: { type: "int" }
+            player_id: { type: "int" }
