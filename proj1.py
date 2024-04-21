@@ -1,6 +1,7 @@
 import pandas as pd
 import numpy as np
 import matplotlib.pyplot as plt
+import time
 
 # Function to set x-ticks for better visualization
 
@@ -243,3 +244,36 @@ set_x_ticks(axs[1])
 plt.tight_layout()
 plt.savefig('impact_of_assists_on_game_participation_comparison.png')
 plt.close()
+
+
+# Error and plots:
+
+def apply_dp_laplace(data, epsilon, sensitivity=1):
+    scale = sensitivity / epsilon
+    return data + np.random.laplace(0, scale, size=len(data))
+
+
+# Load your data
+injuries_df = pd.read_csv('data/injuries.csv')
+injuries_df['injury_date'] = pd.to_datetime(
+    injuries_df['injury_date'], errors='coerce')
+injuries_df['days_injured'] = (pd.to_datetime(injuries_df['actual_recovery_date'], errors='coerce') -
+                               injuries_df['injury_date']).dt.days.fillna(0)
+
+# Define the range of epsilon values
+epsilon_values = [0.01, 0.02, 0.05, 0.1, 0.2, 0.5, 1, 2, 5, 10]
+
+# Loop over each epsilon value
+for i, epsilon in enumerate(epsilon_values):
+    plt.figure(figsize=(10, 5))
+    for j in range(10):  # Perform 10 executions for each epsilon
+        noisy_data = apply_dp_laplace(injuries_df['days_injured'], epsilon)
+        plt.hist(noisy_data, bins=30, alpha=0.5, label=f'Execution {j+1}')
+
+    plt.title(f'Variability in Days Injured with Epsilon={epsilon}')
+    plt.xlabel('Days Injured')
+    plt.ylabel('Frequency')
+    plt.legend()
+    plt.tight_layout()
+    plt.savefig(f'error-epsilon-{i+1}.png')
+    plt.close()
