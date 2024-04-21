@@ -1,0 +1,11 @@
+version: 1
+games:
+    schema: public
+    name: games
+    columns:
+        game_id:
+            type: int
+        stadium:
+            type: string
+        attendance:
+            type: int

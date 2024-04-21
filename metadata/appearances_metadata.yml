@@ -1,0 +1,15 @@
+version: 1
+appearances:
+    schema: public
+    name: appearances
+    columns:
+        appearance_id:
+            type: int
+        player_id:
+            type: int
+        goals:
+            type: int
+        assists:
+            type: int
+        minutes:
+            type: int

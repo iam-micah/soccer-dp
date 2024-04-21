@@ -1,0 +1,11 @@
+version: 1
+competitions:
+    schema: public
+    name: competitions
+    columns:
+        competition_id:
+            type: int
+        name:
+            type: string
+        country:
+            type: string

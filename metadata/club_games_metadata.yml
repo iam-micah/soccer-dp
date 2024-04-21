@@ -1,0 +1,13 @@
+version: 1
+club_games:
+    schema: public
+    name: club_games
+    columns:
+        game_id:
+            type: int
+        club_id:
+            type: int
+        opponent_id:
+            type: int
+        goals:
+            type: int

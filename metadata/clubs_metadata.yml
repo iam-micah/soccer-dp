@@ -1,0 +1,15 @@
+version: 1
+clubs:
+    schema: public
+    name: clubs
+    columns:
+        club_id:
+            type: int
+        name:
+            type: string
+        squad_size:
+            type: int
+        average_age:
+            type: float
+        foreigners_number:
+            type: int

@@ -1,0 +1,11 @@
+version: 1
+player_valuations:
+    schema: public
+    name: player_valuations
+    columns:
+        player_id:
+            type: int
+        date:
+            type: string
+        market_value:
+            type: float
